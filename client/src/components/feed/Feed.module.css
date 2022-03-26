@@ -1,0 +1,29 @@
+* {
+    box-sizing: border-box;
+}
+
+.post {
+    display: block;
+    text-align: center;
+}
+
+.post_container {
+    padding: 3vh;
+    margin: 5vw auto;
+    text-align: center;
+    box-shadow: 0 0 1rem rgba(0, 0, 0, .26);
+    width: 50vw;
+}
+
+.button {
+    color: white;
+    padding: .5rem 1vw;
+    background-color: dodgerblue;
+    margin-bottom: 2.5vh;
+    cursor: pointer;
+}
+
+.author {
+    cursor: pointer;
+    color: dodgerblue;
+}

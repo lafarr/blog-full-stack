@@ -1,0 +1,119 @@
+* {
+    box-sizing: border-box;
+    color: black;
+}
+
+.container {
+
+}
+
+.username {
+    text-align: center;
+}
+
+.post_container {
+    text-align: center;
+    box-shadow: 0 0 1rem rgba(0, 0, 0, .26);
+    width: 50vw;
+    margin: 5vh auto;
+    padding: 2rem;
+}
+
+.post {
+
+}
+
+.post_content {
+    text-align: center;
+}
+
+.edit_button {
+    color: white;
+    padding: .5rem 1vw;
+    background-color: dodgerblue;
+    margin-right: 1vw
+}
+
+.delete_button {
+    color: white;
+    padding: .5rem 1vw;
+    background-color: red;
+    margin-left: 1vw;
+}
+
+.post_title {
+}
+
+.link {
+    color: white;
+    text-decoration: none;
+}
+
+.dots {
+    background: none;
+    float: right;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+.pic_container {
+    display: flex;
+    justify-content: center;
+}
+
+.pic {
+    height: 10vh;
+    width: 10vh;
+    border-radius: 3rem;
+}
+
+.followers_container {
+    border: thin solid dodgerblue;
+    margin: 2vh auto 2vh auto;
+    padding: 0 10vh 0 10vh;
+    display: flex;
+    justify-content: center;
+    width: fit-content;
+    text-align: center;
+}
+
+.followers {
+}
+
+.following_container {
+    margin-left: .25vw;
+}
+
+.followers_container2 {
+    margin-right: .25vw;
+}
+
+.followers_label {
+}
+
+.following_label {
+}
+
+.following {
+}
+
+.button_container {
+    display: flex;
+    justify-content: center;
+}
+
+.follow_button {
+    color: white;
+    padding: 1rem 3vw;
+    background-color: dodgerblue;
+    cursor: pointer;
+}
+
+.following_button {
+    background-color: rgb(250, 70, 70);
+    padding: 1rem 3vw;
+    cursor: pointer;
+    color: white;
+}
+
