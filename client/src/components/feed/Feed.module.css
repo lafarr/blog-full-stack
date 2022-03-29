@@ -1,5 +1,6 @@
 * {
     box-sizing: border-box;
+    margin-top: 0;
 }
 
 .post {
@@ -15,15 +16,93 @@
     width: 50vw;
 }
 
+.button_container {
+    display: flex;
+    justify-content: center;
+}
+
 .button {
     color: white;
     padding: .5rem 1vw;
     background-color: dodgerblue;
     margin-bottom: 2.5vh;
+    margin-top: 1vh;
     cursor: pointer;
+    display: block;
 }
 
 .author {
     cursor: pointer;
     color: dodgerblue;
+}
+
+.likes {
+    display: inline-block;
+    margin-right: 1vw;
+}
+
+.comments {
+    display: inline-block;
+    margin-right: 1vw;
+}
+
+.overlay {
+    height: 100vh;
+    width: 100vw;
+    background: rgba(0, 0, 0, .7);
+}
+
+.modal_content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.comment_area {
+    text-align: center;
+    height: 35vh;
+    width: 40vw;
+}
+
+.x {
+    float: right;
+    padding: 1rem;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.comment_container {
+    display: inline-block;
+}
+
+.comment_container h5:hover {
+    cursor: pointer;
+    text-decoration: underline;
+    color: dodgerblue;
+}
+
+.hr {
+    width: 50vw;
+}
+
+.comment_username {
+    color: dodgerblue;
+    cursor: pointer;
+}
+
+.comment_username:hover {
+    opacity: .4;
+}
+
+.comment_content {
+    font-size: 1.5rem;
+}
+
+.modal_comment_content {
+    margin-top: 1.5vh;
+}
+
+.list_comment {
+    text-align: center;
 }
