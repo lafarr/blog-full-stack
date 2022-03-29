@@ -11,6 +11,10 @@ const Comment = database.define('comment', {
    content: {
        type: sequelize.STRING,
        allowNull: false
+   },
+   username: {
+       type: sequelize.STRING, 
+       allowNull: false
    }
 });
 
