@@ -20,6 +20,7 @@ const Feed = (props) => {
     const [commentsModalActive, setCommentsModalActive] = useState(false);
     const [comment, setComment] = useState('');
     const [comments, setComments] = useState([]);
+    const [postId, setPostId] = useState(0);
 
     const history = useHistory();
     const authCtx = useContext(AuthContext);
@@ -27,13 +28,11 @@ const Feed = (props) => {
     useEffect(() => {
         const fun = async () => {
             try {
-                const res = await fetch('http://localhost:5000/api/posts/get-posts?userId=' + authCtx.userId, {
-                    method: 'GET',
-                });
+                const res = await fetch('http://localhost:5000/api/posts/get-posts?userId=' + authCtx.userId);
                 const r = await fetch('http://localhost:5000/api/likes?userId=' + authCtx.userId);
                 const d = await r.json();
                 const data = await res.json();
-                setPosts(data.posts);
+                setPosts(data.posts.reverse());
                 setLikes(d.likes);
             } catch (err) {
                 console.log(err);
@@ -118,8 +117,9 @@ const Feed = (props) => {
     };
 
     /* Handler for adding a comment */
-    const commentClickHandler = async () => {
+    const commentClickHandler = (postId) => {
         setModalActive(true);
+        setPostId(postId);
     };
 
     const getCommentsHandler = async (post) => {
@@ -136,7 +136,7 @@ const Feed = (props) => {
 
     const commentSubmitHandler = async (event, post) => {
         event.preventDefault();
-        const res = await fetch('http://localhost:5000/api/comments/make-comment?postId=' + post.id, {
+        const res = await fetch('http://localhost:5000/api/comments/make-comment?postId=' + postId, {
             method: 'POST',
             body: JSON.stringify({
                 creator: authCtx.userId,
@@ -146,12 +146,13 @@ const Feed = (props) => {
                 'Content-Type': 'application/json'
             }
         });
+        console.log(res);
         if (res.status === 200) {
             setComment('');
             setModalActive(false);
             setNum(prev => prev + 1);
         } else {
-            /* do something */
+            console.log('something went wrong');
         }
     };
 
@@ -161,15 +162,19 @@ const Feed = (props) => {
         setCommentsModalActive(false);
     };
 
+    const commentUsernameClick = (comment) => {
+        history.push('/users?userId=' + comment.userId);
+    };
+
     return (
         <div className={modalActive ? styles.hidden : ''}>
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
             <div className={modalActive || commentsModalActive ? styles.overlay : ''}>
                 <Navigation />
                 {posts.length !== 0 &&
-                    posts.reverse().map(post => {
+                    posts.map(post => {
                         return (
-                            <div className={styles.post_container}>
+                            <li key={post.id} className={styles.post_container}>
                                 {post.userId === parseInt(authCtx.userId) && <Dots postId={post.id} onDelete={() => deleteHandler(post.id)} />}
                                 <h1 className={styles.post}>{post.title}</h1>
                                 <h4> By <strong className={styles.author} onClick={() => usernameClickHandler(post.userId)}>@{post.username}</strong></h4>
@@ -187,7 +192,7 @@ const Feed = (props) => {
                                 }
                                 <h5 className={styles.likes}>{post.numLikes} likes</h5>
                                 <div className={styles.comment_container}>
-                                    <i className="fa fa-comment" onClick={commentClickHandler} />
+                                    <i className="fa fa-comment" onClick={() => commentClickHandler(post.id)} />
                                     <h5 className={styles.comments} onClick={() => getCommentsHandler(post)}>{post.numComments} comments</h5>
                                 </div>
                                 {modalActive &&
@@ -210,7 +215,7 @@ const Feed = (props) => {
                                             {comments.map(comment => {
                                                 return (
                                                     <div className={styles.list_comment}>
-                                                        <h3 className={styles.comment_username}>@{comment.username}</h3>
+                                                        <h3 className={styles.comment_username} onClick={() => commentUsernameClick(comment)}>@{comment.username}</h3>
                                                         <p className={styles.comment_content}>{comment.content}</p>
                                                         <hr className={styles.hr}></hr>
                                                     </div>
@@ -219,7 +224,7 @@ const Feed = (props) => {
                                         </div>
                                     </Modal>
                                 }
-                            </div>
+                            </li>
                         )
                     }
                     )}

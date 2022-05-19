@@ -14,6 +14,7 @@
     text-align: center;
     box-shadow: 0 0 1rem rgba(0, 0, 0, .26);
     width: 50vw;
+    list-style: none;
 }
 
 .button_container {

@@ -81,7 +81,7 @@ exports.postAccount = async (req, res, next) => {
       res
           .status(200)
           .json({
-              user: currUser.dataValues
+              user: currUser
           });
   } catch (err) {
       res

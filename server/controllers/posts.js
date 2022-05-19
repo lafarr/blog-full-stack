@@ -78,14 +78,6 @@ exports.putPost = async (req, res, next) => {
 
 /* /api/posts?postId=7 */
 exports.getFullPost = async (req, res, next) => {
-    // const errors = validationResult(req).array();
-    // if (errors.length !== 0) {
-    //     return res
-    //         .status(404)
-    //         .json({
-    //             message: 'An error occurred'
-    //         });
-    // }
     const postId = req.query.postId;
     try {
         const currPost = await Post.findByPk(postId);

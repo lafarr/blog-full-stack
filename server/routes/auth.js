@@ -26,7 +26,7 @@ Router.post('/signup',
     body('confirmPassword')
         .custom(async (confirmPassword, { req }) => {
             if (confirmPassword !== req.body.password) {
-                return await Promise.reject('Password and confirm password do not match! ' + req.body.password + ' ' + confirmPassword);
+                return await Promise.reject('Password and confirm password do not match!');
             }
         }),
     authController.postSignup
